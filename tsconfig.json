@@ -1,0 +1,17 @@
+{
+  "include": ["src", "test"],
+  "compilerOptions": {
+    "noEmit": true,
+    "rootDir": ".",
+    "strict": true,
+    "declaration": true,
+    "noEmitHelpers": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
+    "target": "ESNext",
+    "lib": ["ESNext"],
+    "types": ["node", "jest"]
+  }
+}
