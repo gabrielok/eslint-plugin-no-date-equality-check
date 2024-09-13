@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.1.1](https://github.com/gabrielok/eslint-plugin-no-date-equality-check/compare/v1.1.0...v1.1.1) (2024-09-13)
+
+
+### Bug Fixes
+
+* fix the configs export ([a8963e3](https://github.com/gabrielok/eslint-plugin-no-date-equality-check/commit/a8963e3b71387301353a22749926c9efa7fbd1cf))
+
 ## [1.1.0](https://github.com/gabrielok/eslint-plugin-no-date-equality-check/compare/v1.0.1...v1.1.0) (2024-09-13)
 
 
