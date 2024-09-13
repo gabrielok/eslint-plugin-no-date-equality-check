@@ -11,8 +11,10 @@ export const rule = createRule({
       requiresTypeChecking: true,
     },
     schema: [],
+    hasSuggestions: true,
     messages: {
       noDateEquality: 'Avoid using equality checks between Date objects.',
+      suggestToISOString: 'Replace with .toISOString() comparison.',
     },
   },
   defaultOptions: [],
@@ -41,6 +43,19 @@ export const rule = createRule({
                 end: node.right.loc.end,
               },
               messageId: 'noDateEquality',
+              suggest: [
+                {
+                  messageId: 'suggestToISOString',
+                  fix: (fixer) => {
+                    const leftText = context.sourceCode.getText(node.left);
+                    const rightText = context.sourceCode.getText(node.right);
+                    return [
+                      fixer.replaceText(node.left, `${leftText}.toISOString()`),
+                      fixer.replaceText(node.right, `${rightText}.toISOString()`),
+                    ];
+                  },
+                },
+              ],
             });
           }
         }

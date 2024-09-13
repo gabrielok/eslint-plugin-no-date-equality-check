@@ -14,7 +14,10 @@ const ruleTester = new RuleTester({
   },
 });
 
-function getInvalidTestCase(code: string): InvalidTestCase<'noDateEquality', []> {
+function getInvalidTestCase(
+  code: string,
+  fixed: string,
+): InvalidTestCase<'noDateEquality' | 'suggestToISOString', []> {
   return {
     code,
     errors: [
@@ -22,6 +25,12 @@ function getInvalidTestCase(code: string): InvalidTestCase<'noDateEquality', []>
         column: 1,
         endColumn: code.length + 1,
         messageId: 'noDateEquality',
+        suggestions: [
+          {
+            messageId: 'suggestToISOString',
+            output: fixed,
+          },
+        ],
       },
     ],
   };
@@ -32,11 +41,29 @@ ruleTester.run('no-date-equality-check', rule, {
     code,
   })),
   invalid: [
-    'new Date() != new Date()',
-    'new Date() !== new Date()',
-    'new Date() <= new Date()',
-    'new Date() == new Date()',
-    'new Date() === new Date()',
-    'new Date() >= new Date()',
-  ].map(getInvalidTestCase),
+    getInvalidTestCase(
+      'new Date() != new Date()',
+      'new Date().toISOString() != new Date().toISOString()',
+    ),
+    getInvalidTestCase(
+      'new Date() !== new Date()',
+      'new Date().toISOString() !== new Date().toISOString()',
+    ),
+    getInvalidTestCase(
+      'new Date() <= new Date()',
+      'new Date().toISOString() <= new Date().toISOString()',
+    ),
+    getInvalidTestCase(
+      'new Date() == new Date()',
+      'new Date().toISOString() == new Date().toISOString()',
+    ),
+    getInvalidTestCase(
+      'new Date() === new Date()',
+      'new Date().toISOString() === new Date().toISOString()',
+    ),
+    getInvalidTestCase(
+      'new Date() >= new Date()',
+      'new Date().toISOString() >= new Date().toISOString()',
+    ),
+  ],
 });
