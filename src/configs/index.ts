@@ -5,4 +5,6 @@ const recommended = {
   },
 };
 
-export { recommended };
+const configs = { recommended };
+
+export { configs };

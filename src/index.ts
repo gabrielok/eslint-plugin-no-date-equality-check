@@ -1,4 +1,4 @@
-import * as configs from './configs/';
+import { configs } from './configs/';
 import { rules } from './rules/';
 
 const packageData = require('../package.json') as Record<string, string>;
