@@ -36,6 +36,10 @@ export const rule = createRule({
           if (leftTypeString === 'Date' && rightTypeString === 'Date') {
             context.report({
               node,
+              loc: {
+                start: node.left.loc.start,
+                end: node.right.loc.end,
+              },
               messageId: 'noDateEquality',
             });
           }

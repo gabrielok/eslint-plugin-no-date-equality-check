@@ -1,4 +1,4 @@
-import { RuleTester } from '@typescript-eslint/rule-tester';
+import { InvalidTestCase, RuleTester } from '@typescript-eslint/rule-tester';
 import { rule } from '../src/rules/no-date-equality-check';
 import * as path from 'node:path';
 
@@ -14,6 +14,19 @@ const ruleTester = new RuleTester({
   },
 });
 
+function getInvalidTestCase(code: string): InvalidTestCase<'noDateEquality', []> {
+  return {
+    code,
+    errors: [
+      {
+        column: 1,
+        endColumn: code.length + 1,
+        messageId: 'noDateEquality',
+      },
+    ],
+  };
+}
+
 ruleTester.run('no-date-equality-check', rule, {
   valid: ['new Date() > new Date()', 'new Date() < new Date()'].map((code) => ({
     code,
@@ -25,8 +38,5 @@ ruleTester.run('no-date-equality-check', rule, {
     'new Date() == new Date()',
     'new Date() === new Date()',
     'new Date() >= new Date()',
-  ].map((code) => ({
-    code,
-    errors: [{ messageId: 'noDateEquality' }],
-  })),
+  ].map(getInvalidTestCase),
 });
