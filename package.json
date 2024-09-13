@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-no-date-equality-check",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "An eslint rule that disallows equality checks between date objects",
   "main": "dist/index.js",
   "files": [
